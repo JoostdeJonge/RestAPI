@@ -1,0 +1,15 @@
+SELECT
+	count(id) as aantalprojectenInjaar
+	,SUM([UrenRealisatie]) as UrenRealisatie
+	,SUM([UrenNietGefactureerd]) as UrenGefactureerd
+	,SUM([UrenFactuur]) as AantalEenhedenFactuur 
+	,SUM([OmzetUxT]) as OmzetUxT
+	,SUM([ProjectResultaat_Geboekt]) as ProjectResultaat_Geboekt
+	,SUM([GefactureerdeOmzet]) as GefactureerdeOmzet
+	,SUM([NietGefacuteerd]) as NogTeFactureren
+	,SUM([ProjectResultaat_NietGeboekt]) as ProjectResultaat_NietGeboekt
+	,SUM([OHW]) as OHW
+FROM 
+	[dbo].[fact_OHW] ohw
+WHERE
+	(ohw.LaatsteUren>'2017-01-01' OR ohw.Projectstatus = 'Lopend')
